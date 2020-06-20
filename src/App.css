@@ -111,6 +111,17 @@ a {
   bottom: 0;
   left: 0;
 }
+
+.dropDown {
+  display: none;
+  z-index: 999;
+  color: #000;
+  background: #fff;
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-top: 0;
+  padding: 5px;
+}
 /* nav links */
 .nav-links {
   display: flex;
@@ -120,8 +131,18 @@ a {
   margin: 0 1rem;
 }
 
+.menu:hover .dropDown {
+  display: block;
+}
+
 /* search bar */
 .searchDiv {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.searchForm {
   display: flex;
   align-items: center;
   height: 1.5rem;
@@ -138,7 +159,7 @@ a {
   font-size: 1rem;
 }
 
-.searchDiv button {
+.searchForm button {
   background: transparent;
   border: none;
   outline: none;
@@ -148,16 +169,20 @@ a {
 
 .suggestionDiv {
   position: absolute;
-  background: #000;
-  color: #f7f7f7;
+  background: #fff;
+  color: #000;
   font-size: 1rem;
   font-weight: 800;
-  right: 10%;
+  max-height: 4rem;
+  max-width: 70%;
+  overflow: auto;
+  top: 80%;
   z-index: 999;
 }
 
 .suggestionDiv ul li {
   cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 /* HERO IMAGE */
@@ -439,11 +464,12 @@ select {
 .bundles {
   background: #222;
   padding: 2rem 0;
-  margin: 1rem 0;
+  margin: 1rem auto;
+  max-width: 90%;
 }
 
 .bundlesContainer {
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -466,7 +492,7 @@ select {
 }
 
 .bundlesContent p {
-  padding: 0 0 2rem 0;
+  padding: 0 3rem 2rem 0;
 }
 
 .bundlesContent a {

@@ -43,7 +43,6 @@ const reducer: React.Reducer<any, any> = (state: context, action: IActions) => {
         totalCart: action.payload.totalCart,
       };
     case "FEATURED":
-      console.log(action.payload);
       return {
         ...state,
         featured: action.payload,
@@ -86,8 +85,6 @@ const ProductsProvider: React.FC = ({ children }) => {
         seen[random] = true;
       }
     }
-
-    console.log(topPicks);
 
     dispatch({ type: "FEATURED", payload: topPicks });
   };

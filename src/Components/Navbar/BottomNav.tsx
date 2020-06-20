@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ProductContext, IState } from "../../Context/ProductsContext";
+
+import NavbarLinks from "./NavbarLinks";
 
 const BottomNav: React.FC = () => {
   const { products } = useContext(ProductContext);
@@ -50,42 +52,31 @@ const BottomNav: React.FC = () => {
         <p>
           <Link to="/">GamerLife</Link>
         </p>
-        <ul className="nav-links">
-          <li>
-            <Link to="/products/ps4">PS4</Link>
-          </li>
-          <li>
-            <Link to="/products/switch">Switch</Link>
-          </li>
-          <li>
-            <Link to="/products/xbox">Xbox One</Link>
-          </li>
-          <li>
-            <Link to="/products/bundles">Bundles</Link>
-          </li>
-        </ul>
-        <form className="searchDiv" onSubmit={(e) => handleSubmit(e)}>
-          <input
-            onChange={handleChange}
-            value={search}
-            className="searchBar"
-            type="text"
-            placeholder="Search"
-          />
-          <button onSubmit={(e) => handleSubmit(e)}>
-            <FaSearch />
-          </button>
-        </form>
+        <NavbarLinks />
+        <div className="searchDiv">
+          <form className="searchForm" onSubmit={(e) => handleSubmit(e)}>
+            <input
+              onChange={handleChange}
+              value={search}
+              className="searchBar"
+              type="text"
+              placeholder="Search"
+            />
+            <button onSubmit={(e) => handleSubmit(e)}>
+              <FaSearch />
+            </button>
+          </form>
+          <div className="suggestionDiv">
+            <ul>
+              {suggestions.map((suggestion: IState) => (
+                <li onClick={() => clickSuggestion(suggestion.name)}>
+                  {suggestion.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </nav>
-      <div className="suggestionDiv">
-        <ul>
-          {suggestions.map((suggestion: IState) => (
-            <li onClick={() => clickSuggestion(suggestion.name)}>
-              {suggestion.name}
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 };

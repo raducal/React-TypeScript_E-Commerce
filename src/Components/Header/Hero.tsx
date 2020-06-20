@@ -4,7 +4,7 @@ import ps52 from "../../images/ps52.jpg";
 import xbox from "../../images/xbox.jpg";
 
 const Hero: React.FC = () => {
-  const [images, setImages] = useState([xbox, ps5]);
+  const [images, setImages] = useState([xbox, ps52]);
   const [current, setCurrent] = useState(0);
   const [translateValue, setTranslateValue] = useState(0);
 
