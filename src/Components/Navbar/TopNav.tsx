@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
+import { ProductContext } from "../../Context/ProductsContext";
 
 const TopNav: React.FC = () => {
+  const { totalCart } = useContext(ProductContext);
+
+  useEffect(() => {
+    console.log(totalCart);
+  });
   return (
     <div className="topNav">
       <span>Lang</span>
@@ -12,7 +18,7 @@ const TopNav: React.FC = () => {
         </button>
         <div className="cartDiv">
           <FaShoppingCart size={20} />
-          <span>$0.00</span>
+          <span>${totalCart === 0 ? "0.00" : `${totalCart}`}</span>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ProductContext, IState } from "../../Context/ProductsContext";
 
 interface IProps {
@@ -9,13 +9,24 @@ interface IProps {
 const Products: React.FC<IProps> = ({ consoleType }) => {
   const [currentConsole, setCurrentConsole] = useState<IState[]>([]);
   const { products } = useContext(ProductContext);
+  const location = useLocation();
 
   useEffect(() => {
     let tempArr: IState[] = [];
 
-    for (let product of products) {
-      if (product.consoles === consoleType) {
-        tempArr.push(product);
+    if (consoleType !== "all") {
+      for (let product of products) {
+        if (product.consoles === consoleType) {
+          tempArr.push(product);
+        }
+      }
+    } else {
+      let state: any = location.state;
+
+      for (let product of products) {
+        if (product.name.includes(state.name)) {
+          tempArr.push(product);
+        }
       }
     }
 

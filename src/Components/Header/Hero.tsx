@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
                 backgroundSize: "cover",
                 backgroundPosition: "center center",
                 backgroundRepeat: "no-repeat",
-                width: "100vw",
+                width: "90vw",
                 height: "100%",
               }}
             ></div>
