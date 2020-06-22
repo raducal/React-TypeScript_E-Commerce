@@ -8,12 +8,12 @@ import NavbarLinks from "./NavbarLinks";
 const BottomNav: React.FC = () => {
   const { products } = useContext(ProductContext);
   const [search, setSearch] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState<IState[]>([]);
   const history = useHistory();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
-    let suggestions = [];
+    let suggestions: IState[] = [];
 
     if (value.length > 0) {
       const regex = new RegExp(`^${value}`, "i");
@@ -36,7 +36,10 @@ const BottomNav: React.FC = () => {
     );
 
     if (item) {
-      history.push({ pathname: `/products/all`, state: { ...item } });
+      history.push({
+        pathname: `/products/all`,
+        state: { specificItem: item, type: "all" },
+      });
     }
     setSearch("");
   };

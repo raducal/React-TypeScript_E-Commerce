@@ -7,7 +7,7 @@ const TopPicks = () => {
   const [current, setCurrent] = useState<number>(5);
   const [transitionValue, setTransitionValue] = useState(0);
 
-  const { products, featured, getFeaturedItems } = useContext(ProductContext);
+  const { featured, getFeaturedItems } = useContext(ProductContext);
 
   useEffect(() => {
     getFeaturedItems();

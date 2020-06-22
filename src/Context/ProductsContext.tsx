@@ -1,30 +1,34 @@
 import React, { createContext, useReducer, useEffect } from "react";
-import allProducts from "../data";
+// import allProducts from "../data";
 import products from "../data";
-import { act } from "react-dom/test-utils";
-import { Link, Redirect, useHistory } from "react-router-dom";
 
 export interface IState {
   id: number;
   name: string;
   price: number;
-  genre: string;
+  genre: string[];
   img: string;
   logo: string;
   consoles: string;
   inCart: boolean;
 }
 
+interface itemQty {
+  id: number;
+}
+
 interface context {
   products: IState[];
   totalCart: number;
   featured: IState[];
+  item: itemQty;
 }
 
 const initialState = {
   products: [...products],
   totalCart: 0,
   featured: [],
+  item: {},
 };
 
 interface IActions {
@@ -41,6 +45,7 @@ const reducer: React.Reducer<any, any> = (state: context, action: IActions) => {
         ...state,
         products: action.payload.products,
         totalCart: action.payload.totalCart,
+        item: { ...action.payload.item },
       };
     case "FEATURED":
       return {
@@ -59,17 +64,23 @@ const ProductsProvider: React.FC = ({ children }) => {
     let tempCartVal: number = productState.totalCart;
     let temp: IState[] = [...productState.products];
 
-    temp.map((prod: IState) => {
-      if (prod.id === product.id) {
-        prod.inCart = true;
-        tempCartVal += qty * prod.price;
-      }
-      return prod;
+    const addedProduct: any = temp.find((prod: IState) => {
+      return prod.id === product.id;
     });
+
+    tempCartVal += addedProduct.price * qty;
+    let item = { ...productState.item };
+
+    if (!item[addedProduct.id]) {
+      item[addedProduct.id] = qty;
+    } else {
+      item[addedProduct.id] += qty;
+    }
 
     let newState = {
       products: temp,
       totalCart: tempCartVal,
+      item,
     };
 
     dispatch({ type: "ADD_CART", payload: newState });
@@ -89,6 +100,13 @@ const ProductsProvider: React.FC = ({ children }) => {
     dispatch({ type: "FEATURED", payload: topPicks });
   };
 
+  const paginateProducts = (products: IState[], current: number) => {
+    let limit: number = 12;
+    let newProducts = products.slice(current, current + limit);
+    let pages: number = Math.ceil(products.length / limit);
+    return [newProducts, pages];
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -97,6 +115,8 @@ const ProductsProvider: React.FC = ({ children }) => {
         totalCart: productState.totalCart.toFixed(2),
         getFeaturedItems,
         featured: productState.featured,
+        items: productState.item,
+        paginateProducts,
       }}
     >
       {children}

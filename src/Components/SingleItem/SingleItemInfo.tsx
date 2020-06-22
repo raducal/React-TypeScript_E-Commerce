@@ -20,6 +20,11 @@ const SingleItemInfo: React.FC<IProps> = ({ state }) => {
     }
   };
 
+  const addToCartAndReset = (state: IState, qty: number) => {
+    addToCart(state, qty);
+    setQty(1);
+  };
+
   return (
     <div className="singleItemInfo">
       <h3>{state.name}</h3>
@@ -39,7 +44,7 @@ const SingleItemInfo: React.FC<IProps> = ({ state }) => {
       <p>${state.price}</p>
       <button
         className="singleItemInfoAddToCartBtn"
-        onClick={() => addToCart(state, qty)}
+        onClick={() => addToCartAndReset(state, qty)}
       >
         Add to Cart
       </button>

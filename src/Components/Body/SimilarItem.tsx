@@ -4,12 +4,11 @@ import { IState } from "../../Context/ProductsContext";
 
 interface IProps {
   product: IState;
-  key: number;
 }
 
-const SimilarItem: React.FC<IProps> = ({ product, key }) => {
+const SimilarItem: React.FC<IProps> = ({ product }) => {
   return (
-    <div className="singleItemFeaturedProduct" key={key}>
+    <div className="singleItemFeaturedProduct">
       <Link
         to={{
           pathname: `/products/${product.consoles}/${product.name}`,

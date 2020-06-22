@@ -25,7 +25,7 @@ const SingleItem: React.FC<any> = ({ location: { state } }) => {
         <p>You might also like</p>
         <div className="singleItemSimilar">
           {featured.map((product: IState, i: number) => {
-            return <SimilarItem product={product} key={i} />;
+            return <SimilarItem key={i} product={product} />;
           })}
         </div>
       </div>

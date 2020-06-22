@@ -1,46 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ProductContext, IState } from "../../Context/ProductsContext";
+import products from "../../data";
 
 interface IProps {
-  consoleType: string;
+  consoleArr: IState[];
+  type: string;
+  genre?: string;
 }
 
-const Products: React.FC<IProps> = ({ consoleType }) => {
-  const [currentConsole, setCurrentConsole] = useState<IState[]>([]);
-  const { products } = useContext(ProductContext);
-  const location = useLocation();
-
-  useEffect(() => {
-    let tempArr: IState[] = [];
-
-    if (consoleType !== "all") {
-      for (let product of products) {
-        if (product.consoles === consoleType) {
-          tempArr.push(product);
-        }
-      }
-    } else {
-      let state: any = location.state;
-
-      for (let product of products) {
-        if (product.name.includes(state.name)) {
-          tempArr.push(product);
-        }
-      }
-    }
-
-    setCurrentConsole(tempArr);
-  }, [consoleType]);
-
+const Products: React.FC<IProps> = ({ consoleArr, type, genre }) => {
   return (
     <div className="products">
-      {currentConsole.map((product) => {
+      {consoleArr.map((product) => {
         return (
           <div key={product.id} className="product">
             <Link
               to={{
-                pathname: `/products/${consoleType}/${product.name}`,
+                pathname: `/products/${type}/${product.name}`,
                 state: product,
               }}
             >
