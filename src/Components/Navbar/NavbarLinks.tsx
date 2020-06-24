@@ -1,7 +1,9 @@
-import React, { useRef, createRef, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Dropdown from "./Dropdown";
+import Genres from "../Genres";
+import { ProductContext } from "../../Context/ProductsContext";
 
 const NavbarLinks = () => {
   let consoleArr: string[] = ["PS4", "Switch", "Xbox One", "Bundles"];
@@ -25,7 +27,9 @@ const NavbarLinks = () => {
               >
                 {console}
               </Link>
-              <Dropdown currentConsole={currentConsoleHover} />
+              <Genres currentConsole={currentConsoleHover}>
+                <Dropdown currentConsole={currentConsoleHover} />
+              </Genres>
             </li>
           );
         })}

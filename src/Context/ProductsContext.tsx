@@ -1,5 +1,4 @@
-import React, { createContext, useReducer, useEffect } from "react";
-// import allProducts from "../data";
+import React, { createContext, useReducer } from "react";
 import products from "../data";
 
 export interface IState {
@@ -10,11 +9,14 @@ export interface IState {
   img: string;
   logo: string;
   consoles: string;
-  inCart: boolean;
 }
 
 interface itemQty {
   id: number;
+}
+
+interface hovering {
+  console: number | null;
 }
 
 interface context {
@@ -22,6 +24,7 @@ interface context {
   totalCart: number;
   featured: IState[];
   item: itemQty;
+  currentlyHovering: hovering;
 }
 
 const initialState = {
@@ -29,6 +32,7 @@ const initialState = {
   totalCart: 0,
   featured: [],
   item: {},
+  currentlyHovering: {},
 };
 
 interface IActions {
@@ -51,6 +55,17 @@ const reducer: React.Reducer<any, any> = (state: context, action: IActions) => {
       return {
         ...state,
         featured: action.payload,
+      };
+    case "UPDATE_CART":
+      return {
+        ...state,
+        item: action.payload.newItems,
+        totalCart: action.payload.newTotal,
+      };
+    case "CURRENTLY_HOVERING":
+      return {
+        ...state,
+        currentlyHovering: action.payload,
       };
     default:
       return state;
@@ -107,6 +122,30 @@ const ProductsProvider: React.FC = ({ children }) => {
     return [newProducts, pages];
   };
 
+  const removeItemFromCart = (product: IState) => {
+    let newItems = { ...productState.item };
+    let qty = newItems[product.id];
+    let removeFromTotal = product.price * qty;
+    let newTotal = productState.totalCart - removeFromTotal;
+    if (newTotal < 0) {
+      newTotal = 0;
+    }
+    delete newItems[product.id];
+    dispatch({ type: "UPDATE_CART", payload: { newItems, newTotal } });
+  };
+
+  const setCurrentlyHovering = (console: string, activeGenreID: number) => {
+    let newCurrentlyHovering: any = { ...productState.currentlyHovering };
+    newCurrentlyHovering[console] = activeGenreID;
+    for (let active in newCurrentlyHovering) {
+      if (console !== active) {
+        newCurrentlyHovering[active] = null;
+      }
+    }
+
+    dispatch({ type: "CURRENTLY_HOVERING", payload: newCurrentlyHovering });
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -117,6 +156,9 @@ const ProductsProvider: React.FC = ({ children }) => {
         featured: productState.featured,
         items: productState.item,
         paginateProducts,
+        removeItemFromCart,
+        setCurrentlyHovering,
+        currentlyHovering: productState.currentlyHovering,
       }}
     >
       {children}

@@ -1,58 +1,52 @@
-import React, { useEffect, useContext, useState } from "react";
-import { ProductContext, IState } from "../../Context/ProductsContext";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ProductContext } from "../../Context/ProductsContext";
 
-interface IProps {
+export interface IProps {
   currentConsole: string;
+  genreItems?: any;
 }
 
-const Dropdown: React.FC<IProps> = ({ currentConsole }) => {
-  const { products } = useContext(ProductContext);
-  const [consoleProducts, setConsoleProducts] = useState<IState[]>([]);
-  const [dowpdownItems, setDowpdownItems] = useState<string[]>([]);
-
-  useEffect(() => {
-    updateGenres();
-  }, [currentConsole]);
-
-  const updateGenres = () => {
-    let temp: any = new Set();
-    let tempArr: IState[] = [];
-
-    for (let product of products) {
-      if (product.consoles === currentConsole) {
-        tempArr.push(product);
-        temp.add(...product.genre);
-      }
-    }
-
-    setDowpdownItems([...temp]);
-    setConsoleProducts(tempArr);
-  };
-
+const Dropdown: React.FC<IProps> = ({ currentConsole, genreItems }) => {
   return (
     <>
-      {dowpdownItems.length > 0 && (
+      {genreItems.length > 0 && (
         <ul className="dropdown-content">
-          {currentConsole.length > 0 &&
-            dowpdownItems.map((item: string, i: number) => {
-              return (
-                <li key={i}>
-                  <Link
-                    to={{
-                      pathname: `/products/${currentConsole}`,
-                      state: { genre: item },
-                    }}
-                  >
-                    {item}
-                  </Link>
-                </li>
-              );
-            })}
+          {currentConsole.length > 0 && (
+            <MapGenres
+              currentConsole={currentConsole}
+              genreItems={genreItems}
+            />
+          )}
         </ul>
       )}
     </>
   );
+};
+
+export const MapGenres: React.FC<IProps> = ({ currentConsole, genreItems }) => {
+  const { setCurrentlyHovering, currentlyHovering } = useContext(
+    ProductContext
+  );
+  return genreItems.map((item: string, i: number) => {
+    return (
+      <li key={i}>
+        <Link
+          to={{
+            pathname: `/products/${currentConsole}`,
+            state: { genre: item },
+          }}
+          onClick={() => setCurrentlyHovering(currentConsole, i)}
+          style={{
+            background:
+              currentlyHovering[currentConsole] === i ? "blue" : "#fff",
+          }}
+        >
+          {item}
+        </Link>
+      </li>
+    );
+  });
 };
 
 export default Dropdown;

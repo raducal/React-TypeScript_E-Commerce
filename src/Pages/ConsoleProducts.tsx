@@ -2,7 +2,9 @@ import React, { useEffect, useState, useContext } from "react";
 import Products from "../Components/Body/Products";
 import { IState, ProductContext } from "../Context/ProductsContext";
 import { useLocation, useHistory } from "react-router-dom";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import PoductsPagination from "../Components/Body/PoductsPagination";
+import Genres from "../Components/Genres";
+import FilterGenres from "../Components/Body/FilterGenres";
 
 interface State {
   type: string;
@@ -13,6 +15,7 @@ interface State {
   genreArr: IState[];
   displayedArr: IState[];
   genre: any;
+  genreClassAppear: boolean;
 }
 
 const ConsoleProducts: React.FC = () => {
@@ -25,6 +28,7 @@ const ConsoleProducts: React.FC = () => {
     genreArr: [],
     displayedArr: [],
     genre: "",
+    genreClassAppear: false,
   });
   const { products, paginateProducts } = useContext(ProductContext);
   const location = useLocation();
@@ -32,9 +36,11 @@ const ConsoleProducts: React.FC = () => {
 
   useEffect(() => {
     setConsoleType();
+    // console.log("useEffect pathname");
   }, [window.location.pathname]);
 
   useEffect(() => {
+    // console.log("useEffect currentIndex", state);
     if (
       state.currentIndex >= 0 &&
       state.currentIndex < state.currentConsole.length
@@ -48,16 +54,25 @@ const ConsoleProducts: React.FC = () => {
   }, [state.currentIndex]);
 
   useEffect(() => {
+    // console.log("useEffect history.state");
     let sentState: any = history.location.state;
+    // console.log("state history", sentState);
     let newGenre: string = "all";
     let type = state.type;
+    let currFlag = false;
+    let genreFlag = false;
     let arr: IState[] = [];
     if (sentState.genre !== "all") {
       newGenre = sentState.genre;
+      genreFlag = true;
+    } else if (sentState.genre === "all") {
+      currFlag = true;
     } else if (sentState.specificItem) {
       type = sentState.type;
       arr = getConsoleProducts(type);
     }
+
+    // console.log(sentState);
 
     setState((prevState) => ({
       ...prevState,
@@ -66,10 +81,17 @@ const ConsoleProducts: React.FC = () => {
       currentPage: 1,
       displayedArr: arr,
     }));
+
+    if (currFlag) {
+      sliceArr(state.currentConsole);
+    } else if (genreFlag) {
+      sliceArr(state.genreArr);
+    }
   }, [history.location.state]);
 
   useEffect(() => {
     let tempArr: IState[] = [];
+    // console.log("useEffect genre currentConsole");
 
     if (state.type !== "all") {
       if (state.genre === "all") {
@@ -97,6 +119,7 @@ const ConsoleProducts: React.FC = () => {
     let pathname = window.location.pathname.split("/");
     let type = pathname[pathname.length - 1];
     let tempArr = getConsoleProducts(type);
+    // console.log("setConsoleType");
     setState((prevState) => ({
       ...prevState,
       type,
@@ -106,6 +129,7 @@ const ConsoleProducts: React.FC = () => {
 
   const getConsoleProducts = (type: string) => {
     let tempArr: IState[] = [];
+    // console.log("getConsoleProducts");
 
     if (type !== "all") {
       for (let product of products) {
@@ -126,6 +150,7 @@ const ConsoleProducts: React.FC = () => {
   };
 
   const sliceArr = (currentArr: IState[]) => {
+    // console.log("sliceArr");
     const [arr, pages] = paginateProducts(currentArr, state.currentIndex);
 
     let pagesArr = new Array(pages);
@@ -168,35 +193,49 @@ const ConsoleProducts: React.FC = () => {
     }));
   };
 
+  const showGenres = () => {
+    setState((prevState) => ({
+      ...prevState,
+      genreClassAppear: !state.genreClassAppear,
+    }));
+  };
+
   return (
     <>
-      <Products
-        consoleArr={state.displayedArr}
-        type={state.type}
-        genre={state.genre}
-      />
-      <div className="pages">
-        <div className="pagesButtons">
-          {state.currentPage > 1 && (
-            <button onClick={prevPage}>
-              <IoIosArrowBack />
-            </button>
-          )}
-          {state.pages.length > 1 &&
-            state.pages.map((page, i) => {
-              let active: any = {};
-              if (i + 1 === state.currentPage) active["background"] = "blue";
-              return (
-                <button onClick={(e) => goToPage(e)} key={i} style={active}>
-                  {i + 1}
-                </button>
-              );
-            })}
-          {state.currentPage < state.pages.length && (
-            <button onClick={nextPage}>
-              <IoIosArrowForward />
-            </button>
-          )}
+      <div className="productsAndFilter">
+        <div className="filter">
+          <div className="productSideGenres">
+            <button onClick={showGenres}>Genres</button>
+            <div
+              className={`genresAppear`}
+              style={{ display: state.genreClassAppear ? "block" : "none" }}
+            >
+              {state.displayedArr[0] && (
+                <Genres
+                  currentConsole={state.displayedArr[0].consoles.toLowerCase()}
+                >
+                  <FilterGenres
+                    currentConsole={state.displayedArr[0].consoles.toLowerCase()}
+                  />
+                </Genres>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="productsAndPagination">
+          <h3>{state.type.toUpperCase()} Games</h3>
+          <Products
+            consoleArr={state.displayedArr}
+            type={state.type}
+            genre={state.genre}
+          />
+          <PoductsPagination
+            goToPage={goToPage}
+            prevPage={prevPage}
+            nextPage={nextPage}
+            currentPage={state.currentPage}
+            pages={state.pages}
+          />
         </div>
       </div>
     </>

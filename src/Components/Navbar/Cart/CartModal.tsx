@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ProductContext, IState } from "../../../Context/ProductsContext";
 
 const CartModal = () => {
-  const { products, items } = useContext(ProductContext);
+  const { products, items, removeItemFromCart } = useContext(ProductContext);
   return (
     <div className="cartItems">
       {products.map((product: IState, i: number) => {
@@ -15,6 +15,9 @@ const CartModal = () => {
               <p>{product.name}</p>
               <p>{quantity}</p>
               <p>{totalItemPrice.toFixed(2)}</p>
+              <button onClick={() => removeItemFromCart(product)}>
+                Remove Item
+              </button>
             </div>
           );
         }

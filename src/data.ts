@@ -61,7 +61,6 @@ const products = [
     img: cod,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 2,
@@ -71,7 +70,6 @@ const products = [
     img: gta5,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 3,
@@ -81,7 +79,6 @@ const products = [
     img: assasinCreed,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 4,
@@ -91,7 +88,6 @@ const products = [
     img: crashBandicoot,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 5,
@@ -101,7 +97,6 @@ const products = [
     img: Doom,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 6,
@@ -111,7 +106,6 @@ const products = [
     img: finalFantasy,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 7,
@@ -121,7 +115,6 @@ const products = [
     img: lego,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 8,
@@ -131,7 +124,6 @@ const products = [
     img: rainbowsixsiege,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 9,
@@ -141,7 +133,6 @@ const products = [
     img: reddead,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 10,
@@ -151,7 +142,6 @@ const products = [
     img: residentevil,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 11,
@@ -161,7 +151,6 @@ const products = [
     img: skyrim,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 12,
@@ -171,7 +160,6 @@ const products = [
     img: spiderman,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 13,
@@ -181,7 +169,6 @@ const products = [
     img: batman,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 14,
@@ -191,7 +178,6 @@ const products = [
     img: lastofus,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 15,
@@ -201,7 +187,6 @@ const products = [
     img: legoMarvel,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 16,
@@ -211,7 +196,6 @@ const products = [
     img: madmax,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 17,
@@ -221,7 +205,6 @@ const products = [
     img: minecraft,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 18,
@@ -231,7 +214,6 @@ const products = [
     img: prey,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 19,
@@ -241,7 +223,6 @@ const products = [
     img: ratchet,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 20,
@@ -251,7 +232,6 @@ const products = [
     img: starwars,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 21,
@@ -261,7 +241,6 @@ const products = [
     img: borderlands,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 22,
@@ -271,7 +250,6 @@ const products = [
     img: supermario,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 23,
@@ -281,7 +259,6 @@ const products = [
     img: pokemonshield,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 24,
@@ -291,7 +268,6 @@ const products = [
     img: pokemonsword,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 25,
@@ -301,7 +277,6 @@ const products = [
     img: outerworlds,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 26,
@@ -311,7 +286,6 @@ const products = [
     img: marioandrabbids,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 27,
@@ -321,7 +295,6 @@ const products = [
     img: finalFantasySwitch,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 28,
@@ -331,7 +304,6 @@ const products = [
     img: bioshock,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 29,
@@ -341,7 +313,6 @@ const products = [
     img: xenobladeschronicles,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 30,
@@ -351,7 +322,6 @@ const products = [
     img: sonicmania,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 31,
@@ -361,7 +331,6 @@ const products = [
     img: rime,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 32,
@@ -371,7 +340,6 @@ const products = [
     img: legoswitch,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 33,
@@ -381,7 +349,6 @@ const products = [
     img: legendofzelda,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 34,
@@ -391,7 +358,6 @@ const products = [
     img: crashBandicootswitch,
     logo: "",
     consoles: "switch",
-    inCart: false,
   },
   {
     id: 35,
@@ -401,7 +367,6 @@ const products = [
     img: fifa20,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 36,
@@ -411,7 +376,6 @@ const products = [
     img: alienisolation,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 37,
@@ -421,7 +385,6 @@ const products = [
     img: cars3,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 38,
@@ -431,7 +394,6 @@ const products = [
     img: destiny,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 39,
@@ -441,7 +403,6 @@ const products = [
     img: granturismo,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 40,
@@ -451,7 +412,6 @@ const products = [
     img: dyinglight,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 41,
@@ -461,7 +421,6 @@ const products = [
     img: needforspeed,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 42,
@@ -471,7 +430,6 @@ const products = [
     img: fastandfurious,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 43,
@@ -481,7 +439,6 @@ const products = [
     img: gtsport,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 44,
@@ -491,7 +448,6 @@ const products = [
     img: mortalcombat,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 45,
@@ -501,7 +457,6 @@ const products = [
     img: streetfighter5,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 46,
@@ -511,7 +466,6 @@ const products = [
     img: tekken7,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
   {
     id: 47,
@@ -521,7 +475,6 @@ const products = [
     img: untildawn,
     logo: ps4,
     consoles: "ps4",
-    inCart: false,
   },
 ];
 
