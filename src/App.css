@@ -203,13 +203,19 @@ button {
   flex: 1;
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  width: 100%;
 }
 
-.addToCartModalContentButtons button {
+.addToCartModalContentBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
   width: 40%;
-  height: 25%;
+  height: 28%;
   padding: 10px;
+  background: #f39c12;
 }
 
 /* BOTTOM PART OF NAV */

@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import CustomSelect from "./CustomSelect";
 import { IState, ProductContext } from "../../Context/ProductsContext";
 import Modal from "../Modal";
 import { Link } from "react-router-dom";
@@ -47,8 +46,12 @@ const SingleItemInfo: React.FC<IProps> = ({ state }) => {
           </div>
         </div>
         <div className="addToCartModalContentButtons">
-          <button onClick={closeModal}>Continue Shopping</button>
-          <Link to="/cart">Go To Cart</Link>
+          <button className="addToCartModalContentBtn" onClick={closeModal}>
+            Continue Shopping
+          </button>
+          <Link className="addToCartModalContentBtn" to="/cart">
+            Go To Cart
+          </Link>
         </div>
       </div>
     );
