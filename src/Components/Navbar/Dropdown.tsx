@@ -30,17 +30,25 @@ export const MapGenres: React.FC<IProps> = ({ currentConsole, genreItems }) => {
   );
   return genreItems.map((item: string, i: number) => {
     return (
-      <li key={i}>
+      <li
+        style={{
+          background:
+            currentlyHovering[currentConsole] === i
+              ? `rgb(133, 42, 42)`
+              : "#fff",
+        }}
+        key={i}
+        className="filterListItem"
+      >
         <Link
+          style={{
+            color: currentlyHovering[currentConsole] === i ? `#fff` : "#000",
+          }}
           to={{
             pathname: `/products/${currentConsole}`,
             state: { genre: item },
           }}
           onClick={() => setCurrentlyHovering(currentConsole, i)}
-          style={{
-            background:
-              currentlyHovering[currentConsole] === i ? "blue" : "#fff",
-          }}
         >
           {item}
         </Link>

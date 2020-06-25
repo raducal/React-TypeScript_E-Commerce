@@ -77,6 +77,19 @@ const reducer: React.Reducer<any, any> = (state: context, action: IActions) => {
         ...state,
         currentlyHovering: action.payload,
       };
+    case "UPDATE_ITEMS":
+      return {
+        ...state,
+        item: action.payload.itemsCpy,
+        totalCart: action.payload.tempTotalCart,
+      };
+    case "CLEAR_CART":
+      console.log(action.payload);
+      return {
+        ...state,
+        item: action.payload,
+        totalCart: 0,
+      };
     default:
       return state;
   }
@@ -166,6 +179,20 @@ const ProductsProvider: React.FC = ({ children }) => {
     dispatch({ type: "CURRENTLY_HOVERING", payload: newCurrentlyHovering });
   };
 
+  const updateItemQuantity = (product: IState | IBundle, newQty: number) => {
+    let itemsCpy = { ...productState.item };
+    let tempTotalCart = productState.totalCart;
+    let oldQty = itemsCpy[product.id];
+    itemsCpy[product.id] = newQty;
+    tempTotalCart += (newQty - oldQty) * product.price;
+    dispatch({ type: "UPDATE_ITEMS", payload: { itemsCpy, tempTotalCart } });
+  };
+
+  const clearItems = () => {
+    let newItems = {};
+    dispatch({ type: "CLEAR_CART", payload: newItems });
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -177,9 +204,11 @@ const ProductsProvider: React.FC = ({ children }) => {
         items: productState.item,
         paginateProducts,
         removeItemFromCart,
+        updateItemQuantity,
         setCurrentlyHovering,
         currentlyHovering: productState.currentlyHovering,
         bundles: productState.bundles,
+        clearItems,
       }}
     >
       {children}

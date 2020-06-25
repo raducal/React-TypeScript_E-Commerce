@@ -14,28 +14,18 @@ const TopPicks = () => {
   }, []);
 
   const nextItem = () => {
-    // let tempCurrent = current + 1;
-    // if (tempCurrent + 4 < featured.length) {
-    //   let tempCurrentSlice = featured.slice(tempCurrent, tempCurrent + 5);
-    //   setCurrentSlice(tempCurrentSlice);
-    //   setCurrent(tempCurrent);
-    // }
     if (current < featured.length) {
       setTransitionValue(transitionValue + 190);
       setCurrent(current + 1);
+      console.log(current);
     }
   };
 
   const prevItem = () => {
-    // let tempCurrent = current - 1;
-    // if (tempCurrent - 4 > 0) {
-    //   let tempCurrentSlice = featured.slice(tempCurrent - 4, tempCurrent);
-    //   setCurrentSlice(tempCurrentSlice);
-    //   setCurrent(tempCurrent);
-    // }
-    if (current > 0) {
+    if (current > 5) {
       setTransitionValue(transitionValue - 190);
       setCurrent(current - 1);
+      console.log(current);
     }
   };
 

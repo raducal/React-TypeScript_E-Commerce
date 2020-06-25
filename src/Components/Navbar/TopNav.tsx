@@ -1,20 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { ProductContext } from "../../Context/ProductsContext";
-import Modal from "../Modal";
-import CartModal from "./Cart/CartModal";
+import { Link } from "react-router-dom";
 
 const TopNav: React.FC = () => {
-  const { totalCart, items } = useContext(ProductContext);
-  const [activeModal, setActiveModal] = useState(false);
-
-  const openModal = () => {
-    setActiveModal(true);
-  };
-
-  const closeModal = () => {
-    setActiveModal(false);
-  };
+  const { totalCart } = useContext(ProductContext);
 
   return (
     <div className="topNav">
@@ -24,36 +14,13 @@ const TopNav: React.FC = () => {
           <FaUserCircle />
           <span>Log In</span>
         </button>
-        <button className="cartDiv" onClick={openModal}>
+        <Link to={`/cart`} className="cartDiv">
           <FaShoppingCart size={20} />
           <span>${totalCart === 0 ? "0.00" : `${totalCart}`}</span>
-        </button>
+        </Link>
       </div>
-      {activeModal && returnCartModal(items, closeModal, totalCart)}
     </div>
   );
-};
-
-export const returnCartModal = (
-  items: any,
-  closeModal: () => void,
-  total: number
-) => {
-  let itemsCpy = Object.keys(items);
-  if (itemsCpy.length === 0) {
-    return (
-      <Modal closeModal={closeModal}>
-        <div className="cartItem">Cart Is Empty</div>;
-      </Modal>
-    );
-  } else {
-    return (
-      <Modal closeModal={closeModal}>
-        <CartModal />
-        <div className="cartTotalPrice">{total}</div>
-      </Modal>
-    );
-  }
 };
 
 export default TopNav;

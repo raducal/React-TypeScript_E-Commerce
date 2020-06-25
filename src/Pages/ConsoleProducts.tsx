@@ -222,8 +222,10 @@ const ConsoleProducts: React.FC = () => {
     <>
       <div className="productsAndFilter">
         <div className="filter">
-          <div className="productSideGenres">
-            <button onClick={showGenres}>Genres</button>
+          <div className="productSideFilter">
+            <button onClick={showGenres} className="filterBtns">
+              Genres
+            </button>
             <div
               className={`genresAppear`}
               style={{ display: state.genreClassAppear ? "block" : "none" }}
@@ -260,5 +262,40 @@ const ConsoleProducts: React.FC = () => {
     </>
   );
 };
+
+// const SideFilter = () => {
+//   const [genreClassAppear, setGenreClassAppear] = useState(false);
+
+//   const showGenres = () => {
+//     setGenreClassAppear(!genreClassAppear);
+//   };
+
+//   return(
+//     <div className="productSideFilter">
+//       <button onClick={showGenres} className="filterBtns">
+//         Genres
+//             </button>
+//       <div
+//         className={`genresAppear`}
+//         style={{ display: genreClassAppear ? "block" : "none" }}
+//       >
+//         {state.displayedArr[0] &&
+//           (state.type === "bundle" ? (
+//             <Genres currentConsole={"all"}>
+//               <FilterGenres currentConsole={"all"} />
+//             </Genres>
+//           ) : (
+//               <Genres
+//                 currentConsole={state.displayedArr[0].consoles.toLowerCase()}
+//               >
+//                 <FilterGenres
+//                   currentConsole={state.displayedArr[0].consoles.toLowerCase()}
+//                 />
+//               </Genres>
+//             ))}
+//       </div>
+//     </div>
+//   )
+// }
 
 export default ConsoleProducts;

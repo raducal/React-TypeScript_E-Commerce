@@ -40,31 +40,6 @@ const Hero: React.FC = () => {
         );
       })}
     </div>
-    // <div className="slider">
-    //   <div
-    //     className="slider-wrapper"
-    //     style={{
-    //       transform: `translateX(-${current * (100 / images.length)}%)`,
-    //       width: `${images.length}*100%`,
-    //     }}
-    //   >
-    //     {images.map((image, i) => {
-    //       return (
-    //         <div
-    //           key={i}
-    //           style={{
-    //             backgroundImage: `url(${image})`,
-    //             backgroundSize: "cover",
-    //             backgroundPosition: "center center",
-    //             backgroundRepeat: "no-repeat",
-    //             width: "90vw",
-    //             height: "100%",
-    //           }}
-    //         ></div>
-    //       );
-    //     })}
-    //   </div>
-    // </div>
   );
 };
 
