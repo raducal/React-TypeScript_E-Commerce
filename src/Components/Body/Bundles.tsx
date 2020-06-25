@@ -12,7 +12,14 @@ const Bundles = () => {
             Play your way and experience the power of gaming at home or on the
             go
           </p>
-          <Link to="/products/bundles">Shop All</Link>
+          <Link
+            to={{
+              pathname: `/products/bundles`,
+              state: { genre: "all" },
+            }}
+          >
+            Shop All
+          </Link>
         </div>
         <img src={bundles} alt="" />
       </div>

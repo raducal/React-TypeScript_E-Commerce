@@ -2,10 +2,13 @@ import React, { useContext } from "react";
 import { ProductContext, IState } from "../../../Context/ProductsContext";
 
 const CartModal = () => {
-  const { products, items, removeItemFromCart } = useContext(ProductContext);
+  const { products, items, removeItemFromCart, bundles } = useContext(
+    ProductContext
+  );
+  let allArr = [...products, ...bundles];
   return (
     <div className="cartItems">
-      {products.map((product: IState, i: number) => {
+      {allArr.map((product: IState, i: number) => {
         if (items[product.id]) {
           let quantity = items[product.id];
           let totalItemPrice = product.price * quantity;

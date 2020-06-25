@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import Dropdown from "./Dropdown";
@@ -6,8 +6,13 @@ import Genres from "../Genres";
 import { ProductContext } from "../../Context/ProductsContext";
 
 const NavbarLinks = () => {
-  let consoleArr: string[] = ["PS4", "Switch", "Xbox One", "Bundles"];
+  let consoleArr: string[] = ["PS4", "Switch", "Bundles"];
   const [currentConsoleHover, setCurrentConsoleHover] = useState("");
+  const { setCurrentlyHovering } = useContext(ProductContext);
+
+  const clearGenresWhenHoveringBundles = (currentConsole: string) => {
+    setCurrentlyHovering(currentConsole, null);
+  };
 
   return (
     <div className="menu">
@@ -24,12 +29,15 @@ const NavbarLinks = () => {
                   pathname: `/products/${console.toLowerCase()}`,
                   state: { genre: "all" },
                 }}
+                onClick={() => clearGenresWhenHoveringBundles(console)}
               >
                 {console}
               </Link>
-              <Genres currentConsole={currentConsoleHover}>
-                <Dropdown currentConsole={currentConsoleHover} />
-              </Genres>
+              {console.toLowerCase() !== "bundle" && (
+                <Genres currentConsole={currentConsoleHover}>
+                  <Dropdown currentConsole={currentConsoleHover} />
+                </Genres>
+              )}
             </li>
           );
         })}

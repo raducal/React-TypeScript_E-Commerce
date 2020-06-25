@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ProductContext, IState } from "../../Context/ProductsContext";
-import products from "../../data";
+
+import { IBundle } from "../../Pages/ConsoleProducts";
 
 interface IProps {
-  consoleArr: IState[];
+  consoleArr: any;
   type: string;
-  genre?: string;
 }
 
-const Products: React.FC<IProps> = ({ consoleArr, type, genre }) => {
+const Products: React.FC<IProps> = ({ consoleArr, type }) => {
   return (
     <div className="products">
-      {consoleArr.map((product) => {
+      {consoleArr.map((product: IState | IBundle) => {
         return (
           <div key={product.id} className="product">
             <Link

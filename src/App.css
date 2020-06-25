@@ -193,7 +193,7 @@ button {
 
 .bottomNav p {
   font-family: "Monoton", cursive;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 550;
 }
 
@@ -298,6 +298,21 @@ button {
 }
 
 /* HERO IMAGE */
+/* .slider {
+  position: relative;
+  margin: 0 auto;
+  height: calc(100vh - 7rem);
+  width: 90%;
+  overflow: hidden;
+} 
+
+.slider-wrapper {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+} */
+
 .slider {
   position: relative;
   margin: 0 auto;
@@ -306,11 +321,18 @@ button {
   overflow: hidden;
 }
 
-.slider-wrapper {
+.slide {
   position: absolute;
-  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  transition: transform 0.45s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.slide.current {
+  opacity: 1;
 }
 
 /* TOP PICKS */
@@ -378,14 +400,16 @@ button {
 }
 
 .filter {
-  flex: 1;
+  /* flex: 1; */
+  width: 20%;
   border-right: 1px solid rgba(0, 0, 0, 0.25);
   margin-right: 2rem;
 }
 
 /* FILTER SECTION OF PRODUCTS PAGE */
 .productsAndPagination {
-  flex: 3;
+  /* flex: 3; */
+  width: 80%;
   padding-top: 1rem;
 }
 
@@ -615,7 +639,7 @@ select {
 
 /* BUNDLE SECTION */
 .bundles {
-  background: #222;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16), 0 0px 10px rgba(0, 0, 0, 0.23);
   padding: 2rem 0;
   margin: 1rem auto;
   max-width: 90%;
@@ -635,7 +659,6 @@ select {
 
 .bundlesContent {
   flex: 1.5;
-  color: #f7f7f7;
   font-size: 1rem;
 }
 
@@ -649,6 +672,42 @@ select {
 }
 
 .bundlesContent a {
-  color: #f7f7f7;
+  color: #000;
   font-size: 1rem;
+}
+
+/* SERVICE SECTION */
+.servicesSection {
+  background: #323233;
+  color: #fff;
+  margin-top: 2rem;
+  padding: 2rem 0;
+}
+
+.servicesContainer {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.servicesContainer > h3 {
+  text-align: center;
+  font-size: 1.9rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.servicesContainer > h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: #fff;
+}
+
+.services {
+  padding: 1rem 0 0 0;
+  display: flex;
+  justify-content: space-around;
 }

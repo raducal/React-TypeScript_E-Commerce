@@ -6,14 +6,23 @@ import PoductsPagination from "../Components/Body/PoductsPagination";
 import Genres from "../Components/Genres";
 import FilterGenres from "../Components/Body/FilterGenres";
 
+export interface IBundle {
+  id: number;
+  name: string;
+  price: number;
+  img: string;
+  logo: string;
+  consoles: string;
+}
+
 interface State {
   type: string;
   pages: number[];
   currentPage: number;
   currentIndex: number;
-  currentConsole: IState[];
+  currentConsole: IState[] | any;
   genreArr: IState[];
-  displayedArr: IState[];
+  displayedArr: IState[] | IBundle[];
   genre: any;
   genreClassAppear: boolean;
 }
@@ -30,9 +39,20 @@ const ConsoleProducts: React.FC = () => {
     genre: "",
     genreClassAppear: false,
   });
-  const { products, paginateProducts } = useContext(ProductContext);
+  const { products, paginateProducts, bundles } = useContext(ProductContext);
   const location = useLocation();
   const history = useHistory();
+
+  useEffect(() => {
+    if (state.type === "bundles") {
+      setState({
+        ...state,
+        displayedArr: bundles,
+        currentConsole: bundles,
+        genre: "all",
+      });
+    }
+  }, [state.type]);
 
   useEffect(() => {
     setConsoleType();
@@ -54,9 +74,7 @@ const ConsoleProducts: React.FC = () => {
   }, [state.currentIndex]);
 
   useEffect(() => {
-    // console.log("useEffect history.state");
     let sentState: any = history.location.state;
-    // console.log("state history", sentState);
     let newGenre: string = "all";
     let type = state.type;
     let currFlag = false;
@@ -64,15 +82,15 @@ const ConsoleProducts: React.FC = () => {
     let arr: IState[] = [];
     if (sentState.genre !== "all") {
       newGenre = sentState.genre;
-      genreFlag = true;
+      if (sentState.specificItem) {
+        type = sentState.type;
+        arr = getConsoleProducts(type);
+      } else {
+        genreFlag = true;
+      }
     } else if (sentState.genre === "all") {
       currFlag = true;
-    } else if (sentState.specificItem) {
-      type = sentState.type;
-      arr = getConsoleProducts(type);
     }
-
-    // console.log(sentState);
 
     setState((prevState) => ({
       ...prevState,
@@ -210,25 +228,26 @@ const ConsoleProducts: React.FC = () => {
               className={`genresAppear`}
               style={{ display: state.genreClassAppear ? "block" : "none" }}
             >
-              {state.displayedArr[0] && (
-                <Genres
-                  currentConsole={state.displayedArr[0].consoles.toLowerCase()}
-                >
-                  <FilterGenres
+              {state.displayedArr[0] &&
+                (state.type === "bundle" ? (
+                  <Genres currentConsole={"all"}>
+                    <FilterGenres currentConsole={"all"} />
+                  </Genres>
+                ) : (
+                  <Genres
                     currentConsole={state.displayedArr[0].consoles.toLowerCase()}
-                  />
-                </Genres>
-              )}
+                  >
+                    <FilterGenres
+                      currentConsole={state.displayedArr[0].consoles.toLowerCase()}
+                    />
+                  </Genres>
+                ))}
             </div>
           </div>
         </div>
         <div className="productsAndPagination">
           <h3>{state.type.toUpperCase()} Games</h3>
-          <Products
-            consoleArr={state.displayedArr}
-            type={state.type}
-            genre={state.genre}
-          />
+          <Products consoleArr={state.displayedArr} type={state.type} />
           <PoductsPagination
             goToPage={goToPage}
             prevPage={prevPage}

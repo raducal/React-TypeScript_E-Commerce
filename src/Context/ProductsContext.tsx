@@ -1,11 +1,20 @@
 import React, { createContext, useReducer } from "react";
-import products from "../data";
+import products, { bundles } from "../data";
 
 export interface IState {
   id: number;
   name: string;
   price: number;
   genre: string[];
+  img: string;
+  logo: string;
+  consoles: string;
+}
+
+export interface IBundle {
+  id: number;
+  name: string;
+  price: number;
   img: string;
   logo: string;
   consoles: string;
@@ -21,6 +30,7 @@ interface hovering {
 
 interface context {
   products: IState[];
+  bundles: IBundle[];
   totalCart: number;
   featured: IState[];
   item: itemQty;
@@ -29,6 +39,7 @@ interface context {
 
 const initialState = {
   products: [...products],
+  bundles: [...bundles],
   totalCart: 0,
   featured: [],
   item: {},
@@ -47,7 +58,6 @@ const reducer: React.Reducer<any, any> = (state: context, action: IActions) => {
     case "ADD_CART":
       return {
         ...state,
-        products: action.payload.products,
         totalCart: action.payload.totalCart,
         item: { ...action.payload.item },
       };
@@ -77,23 +87,33 @@ const ProductsProvider: React.FC = ({ children }) => {
 
   const addToCart = (product: IState, qty: number) => {
     let tempCartVal: number = productState.totalCart;
-    let temp: IState[] = [...productState.products];
+    let tempProducts: IState[] = productState.products.slice();
+    let tempBundles: IBundle[] = productState.bundles.slice();
 
-    const addedProduct: any = temp.find((prod: IState) => {
-      return prod.id === product.id;
-    });
+    const findItem = (temp: IState[] | IBundle[]) => {
+      const addedProduct: any = temp.find((prod: IState | IBundle) => {
+        return prod.id === product.id;
+      });
+      return addedProduct;
+    };
 
-    tempCartVal += addedProduct.price * qty;
+    let foundItem: IState | IBundle;
+    if (product.consoles === "bundles") {
+      foundItem = findItem(tempBundles);
+    } else {
+      foundItem = findItem(tempProducts);
+    }
+
+    tempCartVal += foundItem.price * qty;
     let item = { ...productState.item };
 
-    if (!item[addedProduct.id]) {
-      item[addedProduct.id] = qty;
+    if (!item[foundItem.id]) {
+      item[foundItem.id] = qty;
     } else {
-      item[addedProduct.id] += qty;
+      item[foundItem.id] += qty;
     }
 
     let newState = {
-      products: temp,
       totalCart: tempCartVal,
       item,
     };
@@ -159,6 +179,7 @@ const ProductsProvider: React.FC = ({ children }) => {
         removeItemFromCart,
         setCurrentlyHovering,
         currentlyHovering: productState.currentlyHovering,
+        bundles: productState.bundles,
       }}
     >
       {children}

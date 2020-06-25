@@ -49,8 +49,48 @@ import legoswitch from "./images/products/legoswitch.jpg";
 import legendofzelda from "./images/products/legendofzelda.jpg";
 import crashBandicootswitch from "./images/products/crashbandicootswitch.jpg";
 
+// BUNDLES
+import ps4LastOfUsBundle from "./images/products/ps4LastOfUsBundle.jpg";
+import ps4fifa20Bundle from "./images/products/ps4fifa20Bundle.jpg";
+import switchpokemonbundle from "./images/products/switchpokemonbundle.jpg";
+import switchmarioandsonicbundle from "./images/products/switchmarioandsonicbundle.jpg";
+
 import ps4 from "./images/ps4logo.png";
-import xbox from "./images/xboxlogo.png";
+
+export const bundles = [
+  {
+    id: 100,
+    name: "PlayStation 4 500GB + The Last of Us Part II + NOW TV",
+    price: 259.99,
+    img: ps4LastOfUsBundle,
+    logo: ps4,
+    consoles: "bundles",
+  },
+  {
+    id: 101,
+    name: "PlayStation 4 500GB + FiFa 20 + NOW TV",
+    price: 279.99,
+    img: ps4fifa20Bundle,
+    logo: ps4,
+    consoles: "bundles",
+  },
+  {
+    id: 102,
+    name: "Nintendo Switch - Neon + Pokemon Sword",
+    price: 324.99,
+    img: switchpokemonbundle,
+    logo: "switch",
+    consoles: "bundles",
+  },
+  {
+    id: 103,
+    name: "NINTENDO SWITCH - WITH MARIO AND SONIC",
+    price: 349.99,
+    img: switchmarioandsonicbundle,
+    logo: "ps4",
+    consoles: "bundles",
+  },
+];
 
 const products = [
   {

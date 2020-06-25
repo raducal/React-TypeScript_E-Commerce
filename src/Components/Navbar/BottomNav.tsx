@@ -53,7 +53,7 @@ const BottomNav: React.FC = () => {
     <div style={{ position: "relative" }}>
       <nav className="bottomNav activeUnderline">
         <p>
-          <Link to="/">GamerLife</Link>
+          <Link to="/">GAME</Link>
         </p>
         <NavbarLinks />
         <div className="searchDiv">

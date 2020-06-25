@@ -4,72 +4,63 @@ import ps52 from "../../images/ps52.jpg";
 import xbox from "../../images/xbox.jpg";
 
 const Hero: React.FC = () => {
-  const [images, setImages] = useState([xbox, ps52]);
-  const [current, setCurrent] = useState(0);
-  const [translateValue, setTranslateValue] = useState(0);
+  const [images, setImages] = useState<string[]>([]);
+  const [current, setCurrent] = useState<number>(-1);
 
   useEffect(() => {
-    let interval: any;
-    interval = setInterval(() => {
-      if (current < images.length - 1) {
+    setImages([xbox, ps52]);
+    setCurrent(0);
+  }, []);
+
+  useEffect(() => {
+    let slideInterval: any;
+    slideInterval = setInterval(() => {
+      if (images[current + 1]) {
         setCurrent(current + 1);
-        setTranslateValue(translateValue - 100);
-        clearInterval(interval);
+        clearInterval(slideInterval);
       } else if (current === images.length - 1) {
         setCurrent(0);
-        setTranslateValue(0);
-        clearInterval(interval);
+        clearInterval(slideInterval);
       }
     }, 6000);
-
-    return () => clearInterval(interval);
+    return () => clearInterval(slideInterval);
   }, [current]);
 
   return (
     <div className="slider">
-      <div
-        className="slider-wrapper"
-        style={{
-          transform: `translateX(-${current * (100 / images.length)}%)`,
-          width: `${images.length}*100%`,
-        }}
-      >
-        {images.map((image, i) => {
-          return (
-            <div
-              key={i}
-              style={{
-                backgroundImage: `url(${image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
-                backgroundRepeat: "no-repeat",
-                width: "90vw",
-                height: "100%",
-              }}
-            ></div>
-          );
-        })}
-      </div>
+      {images.map((image, i) => {
+        return (
+          <div
+            key={i}
+            className={`slide ${i === current ? "current" : ""}`}
+            style={{
+              background: `url(${image}) no-repeat center center /cover`,
+            }}
+          ></div>
+        );
+      })}
     </div>
-    // <div style={{ overflow: "hidden", width: "90%", margin: "auto" }}>
+    // <div className="slider">
     //   <div
-    //     className="heroDiv"
+    //     className="slider-wrapper"
     //     style={{
-    //       display: "flex",
-    //       transform: `translateX(${translateValue}%)`,
+    //       transform: `translateX(-${current * (100 / images.length)}%)`,
+    //       width: `${images.length}*100%`,
     //     }}
     //   >
     //     {images.map((image, i) => {
     //       return (
     //         <div
-    //           style={{
-    //             height: "100%",
-    //             width: "100%",
-    //           }}
     //           key={i}
-    //         >
-    //           <img className="img" src={image} alt={"alt"} />
-    //         </div>
+    //           style={{
+    //             backgroundImage: `url(${image})`,
+    //             backgroundSize: "cover",
+    //             backgroundPosition: "center center",
+    //             backgroundRepeat: "no-repeat",
+    //             width: "90vw",
+    //             height: "100%",
+    //           }}
+    //         ></div>
     //       );
     //     })}
     //   </div>
