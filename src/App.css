@@ -39,7 +39,7 @@ button {
 /* TOP PART OF NAV */
 .topNav {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   background: #000;
   color: #fff;
@@ -52,7 +52,7 @@ button {
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  width: 15%;
+  width: 200px;
 }
 
 .loginDiv,
@@ -62,11 +62,8 @@ button {
   justify-content: center;
   width: 50%;
   height: 100%;
-  /* border: none;
-  outline: none; */
   background: rgb(133, 42, 42);
   color: #fff;
-  /* cursor: pointer; */
   font-size: 0.9rem;
 }
 
@@ -89,6 +86,7 @@ button {
   margin-left: 10px;
 }
 
+/* ITEMS IN CART */
 .cartItem {
   display: flex;
   justify-content: space-between;
@@ -288,16 +286,23 @@ button {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.burgerMenu {
+  display: none;
+}
 /* search bar */
 .searchDiv {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
 
 .searchForm {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 1.5rem;
 }
 
@@ -364,63 +369,6 @@ button {
 
 .slide.current {
   opacity: 1;
-}
-
-/* TOP PICKS */
-.topPicks {
-  max-width: 75%;
-  margin: auto;
-  overflow: hidden;
-  height: 300px;
-  padding: 1rem 2rem;
-  position: relative;
-}
-
-.topPicks h2 {
-  text-align: center;
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.topPicksItems {
-  position: relative;
-  height: 80%;
-  width: 100%;
-}
-
-.topPicksItems-Slider {
-  display: flex;
-  position: absolute;
-  left: 0;
-}
-
-.leftBtn,
-.rightBtn {
-  position: absolute;
-  top: 0;
-  background: #fff;
-  height: 100%;
-  width: 1.6rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.leftBtn {
-  left: 0;
-}
-
-.rightBtn {
-  right: 0;
-}
-
-.carouselBtn {
-  outline: none;
-  border: none;
-  background: transparent;
-  cursor: pointer;
 }
 
 /* CAROUSEL */
@@ -620,64 +568,6 @@ button {
   background: #777;
 }
 
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  outline: none;
-  box-shadow: none;
-  border: none !important;
-  background: #2c3e50;
-  background-image: none;
-}
-
-select::-ms-expand {
-  display: none;
-}
-
-.singleItemInfoSelect {
-  position: relative;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 10rem;
-  height: 3rem;
-  padding: 10px;
-  line-height: 3;
-  background: #2c3e50;
-  overflow: hidden;
-  border-radius: 0.25em;
-}
-
-select {
-  flex: 1;
-  padding: 0 0.5rem;
-  color: #fff;
-  cursor: pointer;
-}
-
-.singleItemInfoSelect::after {
-  content: "\25BC";
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  background: #34495e;
-  cursor: pointer;
-  pointer-events: none;
-  -webkit-transition: 0.25s all ease;
-  -o-transition: 0.25s all ease;
-  transition: 0.25s all ease;
-}
-
-.singleItemInfoSelect:hover::after {
-  color: #f39c12;
-}
-
-/* #selectplatform {
-} */
-
 .singleItemInfo h3 {
   font-size: 2rem;
   padding: 1rem 0;
@@ -790,17 +680,29 @@ select {
 
 .services {
   padding: 1rem 0 0 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   justify-content: space-around;
 }
 
 @media (max-width: 700px) {
-  body {
-    background: green;
+  .basketLogin {
+    font-size: 0.5rem;
   }
 
-  .topNav {
-    display: none;
+  .bottomNav p {
+    flex: 1;
+    text-align: center;
+  }
+
+  .searchDiv {
+    flex: 1;
+  }
+
+  .burgerMenu {
+    display: block;
+    font-size: 2rem;
+    flex: 1;
   }
 
   .nav-links {
@@ -809,7 +711,7 @@ select {
 
   .slider {
     width: 100%;
-    height: calc(100vh - 10rem);
+    height: calc(100vh - 20rem);
     overflow: hidden;
   }
 
@@ -817,20 +719,18 @@ select {
     max-width: 90%;
   }
 
+  .bundles {
+    padding: 2rem 0;
+    margin: 1rem auto;
+    max-width: 75%;
+  }
+
   .bundlesContainer {
-    width: 80%;
+    max-width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-
-  .bundlesContent {
-    flex: 1;
-  }
-
-  .bundlesContainer img {
-    flex: 1;
   }
 
   .bundlesContent h3 {
@@ -839,9 +739,7 @@ select {
   }
 
   .services {
-    padding: 1rem 0 0 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 }

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useHistory } from "react-router-dom";
 import { ProductContext, IState } from "../../Context/ProductsContext";
+import { IoIosMenu } from "react-icons/io";
 
 import NavbarLinks from "./NavbarLinks";
 
@@ -79,6 +80,7 @@ const BottomNav: React.FC = () => {
             </ul>
           </div>
         </div>
+        <IoIosMenu className="burgerMenu" />
       </nav>
     </div>
   );

@@ -8,7 +8,6 @@ const TopNav: React.FC = () => {
 
   return (
     <div className="topNav">
-      <div></div>
       <div className="basketLogin">
         <button className="loginDiv">
           <FaUserCircle />
