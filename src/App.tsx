@@ -7,6 +7,7 @@ import ConsoleProducts from "./Pages/ConsoleProducts";
 import Navbar from "./Components/Navbar/Navbar";
 import SingleItem from "./Pages/SingleItem";
 import Cart from "./Components/Body/Cart";
+import Contact from "./Components/Body/Contact";
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Route exact path="/products/:type/:item" component={SingleItem} />
           <Route exact path="/cart" component={Cart} />
         </Switch>
+        <Contact />
       </Router>
     </>
   );

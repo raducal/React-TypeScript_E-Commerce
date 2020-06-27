@@ -39,7 +39,9 @@ const SingleItemInfo: React.FC<IProps> = ({ state }) => {
         <div className="addToCartModalContentItem">
           <h3>Item added to cart</h3>
           <div className="cartItem">
-            <img src={item.img} alt="img" />
+            <div className="cartItemImg">
+              <img className="cartItemImgModal" src={item.img} alt="img" />
+            </div>
             <p>{item.name}</p>
             <p>{qty}</p>
             <p>{(item.price * qty).toFixed(2)}</p>

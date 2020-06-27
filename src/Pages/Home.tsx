@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Hero from "../Components/Header/Hero";
-import TopPicks from "../Components/Body/TopPicks";
+import TopPicksCarousel from "../Components/Body/TopPicksCarousel";
 import Bundles from "../Components/Body/Bundles";
-import Contect from "../Components/Body/Contact";
 import { ProductContext } from "../Context/ProductsContext";
 
 const Home: React.FC = () => {
@@ -15,9 +14,8 @@ const Home: React.FC = () => {
   return (
     <div>
       <Hero />
-      <TopPicks />
+      <TopPicksCarousel />
       <Bundles />
-      <Contect />
     </div>
   );
 };

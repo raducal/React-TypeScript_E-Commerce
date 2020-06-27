@@ -33,10 +33,12 @@ const Hero: React.FC = () => {
           <div
             key={i}
             className={`slide ${i === current ? "current" : ""}`}
-            style={{
-              background: `url(${image}) no-repeat center center /cover`,
-            }}
-          ></div>
+            // style={{
+            //   background: `url(${image}) no-repeat center center/cover`,
+            // }}
+          >
+            <img src={image} alt="img" />
+          </div>
         );
       })}
     </div>

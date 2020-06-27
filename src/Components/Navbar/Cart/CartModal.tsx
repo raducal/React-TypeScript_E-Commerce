@@ -39,14 +39,16 @@ const CartModal = () => {
 
   let allArr = [...products, ...bundles];
   return (
-    <div className="cartItems">
+    <>
       {allArr.map((product: IState, i: number) => {
         if (items[product.id]) {
           let quantity = items[product.id];
           let totalItemPrice = product.price * quantity;
           return (
             <div className="cartItem" key={i}>
-              <img src={product.img} alt="img" />
+              <div className="cartItemImg">
+                <img className="cartItemImgCart" src={product.img} alt="img" />
+              </div>
               <p>{product.name}</p>
               <div className="qtyInputDiv">
                 <input
@@ -71,7 +73,7 @@ const CartModal = () => {
           );
         }
       })}
-    </div>
+    </>
   );
 };
 

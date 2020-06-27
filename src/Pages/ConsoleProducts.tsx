@@ -39,7 +39,12 @@ const ConsoleProducts: React.FC = () => {
     genre: "",
     genreClassAppear: false,
   });
-  const { products, paginateProducts, bundles } = useContext(ProductContext);
+  const {
+    products,
+    paginateProducts,
+    bundles,
+    setCurrentlyHovering,
+  } = useContext(ProductContext);
   const location = useLocation();
   const history = useHistory();
 
@@ -262,40 +267,5 @@ const ConsoleProducts: React.FC = () => {
     </>
   );
 };
-
-// const SideFilter = () => {
-//   const [genreClassAppear, setGenreClassAppear] = useState(false);
-
-//   const showGenres = () => {
-//     setGenreClassAppear(!genreClassAppear);
-//   };
-
-//   return(
-//     <div className="productSideFilter">
-//       <button onClick={showGenres} className="filterBtns">
-//         Genres
-//             </button>
-//       <div
-//         className={`genresAppear`}
-//         style={{ display: genreClassAppear ? "block" : "none" }}
-//       >
-//         {state.displayedArr[0] &&
-//           (state.type === "bundle" ? (
-//             <Genres currentConsole={"all"}>
-//               <FilterGenres currentConsole={"all"} />
-//             </Genres>
-//           ) : (
-//               <Genres
-//                 currentConsole={state.displayedArr[0].consoles.toLowerCase()}
-//               >
-//                 <FilterGenres
-//                   currentConsole={state.displayedArr[0].consoles.toLowerCase()}
-//                 />
-//               </Genres>
-//             ))}
-//       </div>
-//     </div>
-//   )
-// }
 
 export default ConsoleProducts;
