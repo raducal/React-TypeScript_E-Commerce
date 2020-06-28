@@ -104,7 +104,7 @@ const TopPicksCarousel = () => {
                 backgroundPosition: "center center",
                 backgroundRepeat: "no-repeat",
                 height: "70%",
-                width: "70%",
+                width: "80%",
               };
               const divStyle = {
                 display: "flex",

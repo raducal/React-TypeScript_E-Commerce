@@ -18,9 +18,9 @@ const SingleItem: React.FC<any> = ({ location: { state } }) => {
       {/* game image */}
       <div className="singleItemContent">
         <SingleItemImage state={state} />
-        {/* other game info */}
-        <SingleItemInfo state={state} />
       </div>
+      {/* other game info */}
+      <SingleItemInfo state={state} />
       <div className="singleItemSimilarContent">
         <p>You might also like</p>
         <div className="singleItemSimilar">
